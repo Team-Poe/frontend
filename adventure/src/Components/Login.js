@@ -2,6 +2,17 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+import styled from 'styled-components';
+
+const Container = styled.div``
+const Header = styled.div``
+const Title = styled.h1``
+const LoginPrompt = styled.span``
+const Form = styled.form``
+const Username = styled.input``
+const Password = styled.input``
+const SignUp = styled.div``
+
 function Login(props) {
     const [user, setUser] = useState({ username: "", password: "" })
 
