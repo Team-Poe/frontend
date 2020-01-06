@@ -65,10 +65,10 @@ function Login(props) {
         />
       </Form>
 
-      <Signup>
+      <SignUp>
         {" "}
         or Sign up <Link to="/register">Here</Link>
-      </Signup>
+      </SignUp>
     </Container>
   );
 }
