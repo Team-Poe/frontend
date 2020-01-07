@@ -11,6 +11,7 @@ const Form = styled.form``;
 const Username = styled.input``;
 const Password = styled.input``;
 const SignUp = styled.div``;
+const Button = styled.button``;
 
 function Login(props) {
   const [user, setUser] = useState({ username: "", password: "" });
@@ -28,7 +29,7 @@ function Login(props) {
         if (res.status === 200 && res.data) {
           const token = res.data.key;
           localStorage.setItem("token", `Token ${token}`);
-          props.history.push("/rooms");
+          props.history.push("/world");
         }
       })
       .catch(err => {
@@ -63,6 +64,7 @@ function Login(props) {
           value={user.password}
           onChange={inputHandler}
         />
+        <Button type = 'submit' onChange = {submitHandler}>Submit</Button>
       </Form>
 
       <SignUp>
