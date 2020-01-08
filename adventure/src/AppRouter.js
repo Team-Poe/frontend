@@ -3,14 +3,14 @@ import { Switch, Route } from 'react-router-dom';
 
 import Register from './Components/Register';
 import Login from './Components/Login';
-import World from './Components/World';
+import GamePage from './Components/GamePage/GamePage.component';
 
 function AppRouter() {
     return <div>
         <Switch>
-            <Route path = '/register' component = {Register} />
-            <Route exact path = '/' component = {Login} />
-            <Route path = '/world' component = {World} />
+            <Route exact path='/register' component = {Register} />
+            <Route exact path='/' component = {Login} />
+            <Route exact path="/game" component={GamePage} />
         </Switch>
     </div>
 }
