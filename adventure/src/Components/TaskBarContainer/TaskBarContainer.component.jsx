@@ -1,12 +1,13 @@
 import React from 'react'
-import InventoryContainer from '../InventoryContainer/InventoryContainer.component'
+import InventoryButton from '../InventoryButton/InventoryButton.component'
 import PlayerMetaData from '../PlayerMetaData/PlayerMetaData.component'
+import MovementContainer from '../MovementContainer/MovementContainer.component'
 
 const TaskBarContainer = () =>  {
   return (
     <div className="taskbar">
-      <InventoryContainer />
-      <div className="inventory-button">I</div>
+      <InventoryButton />
+      <MovementContainer />
       <PlayerMetaData />
     </div>
   )

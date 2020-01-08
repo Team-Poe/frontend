@@ -16,6 +16,7 @@ function Login(props) {
   const [user, setUser] = useState({ username: "", password: "" });
 
   function inputHandler(event) {
+    console.log(event.target.value)
     const updatedUser = { ...user, [event.target.name]: event.target.value };
     setUser(updatedUser);
   }
@@ -23,16 +24,17 @@ function Login(props) {
   function submitHandler(event) {
     event.preventDefault();
     axios
-      .post(`https://team-poe.herokuapp.com/api/login/`, user)
+      .post(`https://lambda-mud-test.herokuapp.com/api/login/`, user)
       .then(res => {
         if (res.status === 200 && res.data) {
+          console.log("response", res);
           const token = res.data.key;
           localStorage.setItem("token", `Token ${token}`);
-          props.history.push("/rooms");
+          props.history.push("/game");
         }
       })
       .catch(err => {
-        if (err) console.log(err);
+        if (err) console.error(err);
       });
   }
 
@@ -63,8 +65,8 @@ function Login(props) {
           value={user.password}
           onChange={inputHandler}
         />
+      <button onClick={submitHandler}>login</button>
       </Form>
-
       <SignUp>
         {" "}
         or Sign up <Link to="/register">Here</Link>
