@@ -23,7 +23,7 @@ const Register = props => {
 
   const registerUser = newUser => {
     axios
-      .post(`https://team-poe.herokuapp.com/api/registration/`, newUser)
+      .post(`https://lambda-mud-test.herokuapp.com/api/registration/`, newUser)
       .then(res => {
         console.log("response", res);
         const token = res.data.key;
