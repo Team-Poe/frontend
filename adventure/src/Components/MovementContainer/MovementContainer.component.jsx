@@ -7,12 +7,12 @@ const directions = [
   'east'
 ]
 
-const MovementContainer = () => {
+const MovementContainer = (props) => {
 
   
   return (
     <div className="movement-container">
-      {directions.map(dir => <p className="direction">{dir}</p>)}
+      {directions.map(dir => <div onClick={() => props.move(dir[0])} className="direction">{dir}</div>)}
     </div>
   )
 }

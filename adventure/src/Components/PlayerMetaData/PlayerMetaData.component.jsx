@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PlayerMetaData = () => {
+const PlayerMetaData = (props) => {
   return (
     <div className="playerData">
       <div className="health-bar">100/100</div>
@@ -8,7 +8,7 @@ const PlayerMetaData = () => {
       <div className="tab-button-1"> </div>
       <div className="tab-button-2"> </div>
       <div className="playerPic"> </div>
-      <div className="player-name"> Test User</div>
+      <div className="player-name">{props.player}</div>
     </div>
   )
 }

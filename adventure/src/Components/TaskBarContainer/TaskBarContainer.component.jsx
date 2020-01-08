@@ -3,12 +3,12 @@ import InventoryButton from '../InventoryButton/InventoryButton.component'
 import PlayerMetaData from '../PlayerMetaData/PlayerMetaData.component'
 import MovementContainer from '../MovementContainer/MovementContainer.component'
 
-const TaskBarContainer = () =>  {
+const TaskBarContainer = (props) =>  {
   return (
     <div className="taskbar">
       <InventoryButton />
-      <MovementContainer />
-      <PlayerMetaData />
+      <MovementContainer move={props.movement}/>
+      <PlayerMetaData player={props.currentPlayer}/>
     </div>
   )
 }

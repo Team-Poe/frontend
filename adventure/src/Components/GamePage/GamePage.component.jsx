@@ -8,9 +8,11 @@ import ChatContainer from '../ChatContainer/ChatContainer.component'
 const GamePage = () => {
   const [token, getToken] = useState('')
   const [gameMap, setGameMap] = useState({})
-  const [currentRoom, getCurrentRoom] = useState({})
+  const [currentPlayer, setCurrentPlayer] = useState('')
+  const [currentRoom, setCurrentRoom] = useState({})
   const [playersInRoom, fetchPlayersInRoom] = useState([])
-  const [roomItems, getRoomItems] = useState([])
+  const [roomItems, setRoomItems] = useState([])
+  const [nextDirection, setNextDirection] = useState({direction: '', id: null})
 
   useEffect(() => {
     let userToken = localStorage.getItem('token')
@@ -26,19 +28,40 @@ const GamePage = () => {
     })
     .then(res => {
       console.log(res)
+      setCurrentPlayer(res.data.name)
       fetchPlayersInRoom(res.data.players)
-      getCurrentRoom(res.data)
-      getRoomItems(res.data.items)
+      setCurrentRoom(res.data)
+      setRoomItems(res.data.items)
     })
     .catch(err => {
       console.error(err)
     })
   }, [token])
 
+  useEffect(() => {
+    axios
+    .post('https://lambda-mud-test.herokuapp.com/api/adv/move/', nextDirection, {
+      headers: {
+        Authorization: `${token}`
+      }
+    })
+    .then(res => {
+      console.log(res)
+      setCurrentPlayer(res.data.name)
+      setCurrentRoom(res.data)
+      fetchPlayersInRoom(res.data.players)
+      setRoomItems(res.data.items)
+    })
+  }, [nextDirection])
+
+  const movementHandler = dir => {
+    setNextDirection({direction: dir})
+  }
+ console.log(nextDirection)
   return (
     <div className="game-page">
       <DungeonMapContainer />
-      <TaskBarContainer />
+      <TaskBarContainer currentPlayer={currentPlayer} movement={movementHandler}/>
       <RoomMetaData players={playersInRoom} currentRoomInfo={currentRoom} items={roomItems}/>
       <ChatContainer />
     </div>
