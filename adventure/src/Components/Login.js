@@ -16,7 +16,7 @@ function Login(props) {
   const [user, setUser] = useState({ username: "", password: "" });
 
   function inputHandler(event) {
-    console.log(event.target.value)
+    console.log(event.target.value);
     const updatedUser = { ...user, [event.target.name]: event.target.value };
     setUser(updatedUser);
   }
@@ -24,7 +24,7 @@ function Login(props) {
   function submitHandler(event) {
     event.preventDefault();
     axios
-      .post(`https://lambda-mud-test.herokuapp.com/api/login/`, user)
+      .post(`https://glacial-hamlet-34792.herokuapp.com/api/login/`, user)
       .then(res => {
         if (res.status === 200 && res.data) {
           console.log("response", res);
@@ -65,7 +65,7 @@ function Login(props) {
           value={user.password}
           onChange={inputHandler}
         />
-      <button onClick={submitHandler}>login</button>
+        <button onClick={submitHandler}>login</button>
       </Form>
       <SignUp>
         {" "}
