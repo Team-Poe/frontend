@@ -6,6 +6,7 @@ const DungeonMapContainer = props => {
   return (
     <div className="map">
       <div className="map-grid">
+
         <div className="row-1">
           {rooms
             .filter(room => room.id <= 242 && room.id > 232)
