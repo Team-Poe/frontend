@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
-import DungeonMapContainer from '../DungeonMapContainer/DungeonMapContainer.component'
-import TaskBarContainer from '../TaskBarContainer/TaskBarContainer.component'
-import RoomMetaData from '../RoomMetaData/RoomMetaData.component'
-import ChatContainer from '../ChatContainer/ChatContainer.component'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import DungeonMapContainer from "../DungeonMapContainer/DungeonMapContainer.component";
+import TaskBarContainer from "../TaskBarContainer/TaskBarContainer.component";
+import RoomMetaData from "../RoomMetaData/RoomMetaData.component";
+import ChatContainer from "../ChatContainer/ChatContainer.component";
 
 const GamePage = () => {
   const [token, getToken] = useState('')
@@ -16,9 +16,9 @@ const GamePage = () => {
   const [roomList, getRoomList] = useState([])
 
   useEffect(() => {
-    let userToken = localStorage.getItem('token')
-    getToken(userToken)
-  }, [])
+    let userToken = localStorage.getItem("token");
+    getToken(userToken);
+  }, []);
 
   useEffect(() => {
     axios
@@ -82,7 +82,7 @@ console.log(currentRoom)
       <RoomMetaData players={playersInRoom} currentRoomInfo={currentRoom} items={roomItems}/>
       <ChatContainer />
     </div>
-  )
-}
+  );
+};
 
-export default GamePage
+export default GamePage;
