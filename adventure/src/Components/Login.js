@@ -24,7 +24,7 @@ function Login(props) {
   function submitHandler(event) {
     event.preventDefault();
     axios
-      .post(`https://lambda-mud-test.herokuapp.com/api/login/`, user)
+      .post(`https://glacial-hamlet-34792.herokuapp.com/api/login/`, user)
       .then(res => {
         if (res.status === 200 && res.data) {
           console.log("response", res);

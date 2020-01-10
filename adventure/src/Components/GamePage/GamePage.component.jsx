@@ -13,6 +13,7 @@ const GamePage = () => {
   const [playersInRoom, fetchPlayersInRoom] = useState([])
   const [roomItems, setRoomItems] = useState([])
   const [nextDirection, setNextDirection] = useState({direction: '', id: null})
+  const [roomList, getRoomList] = useState([])
 
   useEffect(() => {
     let userToken = localStorage.getItem('token')
@@ -21,7 +22,21 @@ const GamePage = () => {
 
   useEffect(() => {
     axios
-    .get('https://lambda-mud-test.herokuapp.com/api/adv/init/', {
+    .get('https://glacial-hamlet-34792.herokuapp.com/api/adv/rooms/', {
+      headers: {
+        Authorization: `${token}`
+      }
+    })
+    .then(res => {
+      getRoomList(res.data.rooms)
+
+    })
+  }, [])
+
+
+  useEffect(() => {
+    axios
+    .get('https://glacial-hamlet-34792.herokuapp.com/api/adv/init/', {
       headers: {
         Authorization: `${token}`
       }
@@ -40,7 +55,7 @@ const GamePage = () => {
 
   useEffect(() => {
     axios
-    .post('https://lambda-mud-test.herokuapp.com/api/adv/move/', nextDirection, {
+    .post('https://glacial-hamlet-34792.herokuapp.com/api/adv/move/', nextDirection, {
       headers: {
         Authorization: `${token}`
       }
@@ -57,10 +72,12 @@ const GamePage = () => {
   const movementHandler = dir => {
     setNextDirection({direction: dir})
   }
- console.log(nextDirection)
+//  console.log(nextDirection)
+// console.log('rooms on state', roomList)
+console.log(currentRoom)
   return (
     <div className="game-page">
-      <DungeonMapContainer />
+      <DungeonMapContainer currentRoom={currentRoom} rooms={roomList}/>
       <TaskBarContainer currentPlayer={currentPlayer} movement={movementHandler}/>
       <RoomMetaData players={playersInRoom} currentRoomInfo={currentRoom} items={roomItems}/>
       <ChatContainer />
