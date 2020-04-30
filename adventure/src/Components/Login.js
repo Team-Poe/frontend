@@ -11,6 +11,7 @@ const Form = styled.form``;
 const Username = styled.input``;
 const Password = styled.input``;
 const SignUp = styled.div``;
+const Button = styled.button``;
 
 function Login(props) {
   const [user, setUser] = useState({ username: "", password: "" });
